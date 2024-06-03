@@ -113,6 +113,9 @@ class Chat:
 
     def send_message(self, event=None):
         message = self.message_input.get() # 메시지 입력창에서 메시지 가져오기
+        if message == "":
+             messagebox.showerror("Input error","메시지를 입력하세요")
+             return
         self.message_input.delete(0, tk.END) # 메시지 입력창 비우기 (가져오고 비우는거임)
         self.client_socket.send(f'{self.nickname}: {message}'.encode('utf-8')) # 닉네임 : 메시지 전송
 
